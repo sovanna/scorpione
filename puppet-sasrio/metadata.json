@@ -1,0 +1,14 @@
+{
+  "name": "sovanna-vmdefault",
+  "version": "0.1.0",
+  "author": "sovanna",
+  "summary": "default install package for VM",
+  "license": "MIT",
+  "source": "no at this time",
+  "project_page": "nowhere",
+  "issues_url": "in your ass",
+  "dependencies": [
+    {"name":"puppetlabs/stdlib","version_requirement":">= 1.0.0"}
+  ]
+}
+
