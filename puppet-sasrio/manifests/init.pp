@@ -7,44 +7,12 @@ class vmdefault {
         command => 'apt-get update',
     }
 
-    package {'vim-nox':
-        ensure => installed,
+    exec {'install puppet module sudo':
+        command => 'puppet module install saz-sudo',
     }
 
-    package {'ntp':
-        ensure => installed,
-    }
-
-    package {'ntpdate':
-        ensure => installed,
-    }
-
-    package {'bash-completion':
-        ensure => installed,
-    }
-
-    package {'ssh':
-        ensure => installed,
-    }
-
-    package {'openssh-server':
-        ensure => installed,
-    }
-
-    package {'make':
-        ensure => installed,
-    }
-
-    package {'build-essential':
-        ensure => installed,
-    }
-
-    package {'git-core':
-        ensure => installed,
-    }
-
-    package {'htop':
-        ensure => installed,
+    exec {'install puppet module ssh_keygen':
+        command => 'puppet module install maestrodev-ssh_keygen',
     }
 
     cron {'puppet-agent':

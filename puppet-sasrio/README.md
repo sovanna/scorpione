@@ -1,7 +1,31 @@
 
+### Quick install
+
+	cd /tmp
+	wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb
+	dpkg -i puppetlabs-release-precise.deb
+	apt-get update
+	
+install puppet simply as an agent node (not with master)
+
+	apt-get install puppet
+	
+	
+comment out template
+
+	vi /etc/puppet/puppet.conf
+	
+	#templatedir=$confdir/templates
+	
+start puppet
+
+	vi /etc/default/puppet
+	START=yes
+	
+
 ### Example of puppet master config
 
-	class base {
+	class start {
 		include vmdefault
 
 		user {'sovanna':
@@ -30,26 +54,31 @@
 	}
 
 	node puppet {
-		include base
+		include start
+		include vmdefault::bbase
 	}
 
 	node 'vm01.lan' {
-		include base
+		include start
+		include vmdefault::bbase
 		include vmdefault::web
 		include vmdefault::nodejs
 	}
 
 	node 'vm02.lan' {
-		include base
+		include start
+		include vmdefault::bbase
 		include vmdefault::jenkins
 	}
 
 	node 'vm03.lan' {
-		include base
+		include start
+		include vmdefault::bbase
 		include vmdefault::python
 	}
 
 	node 'vm04.lan' {
-		include base
+		include start
+		include vmdefault::bbase
 		include vmdefault::mysql
 	}
