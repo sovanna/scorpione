@@ -1,4 +1,4 @@
-class vmdefault::mongodb {
+class sasrio::mongodb {
     Exec {
         path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ]
     }

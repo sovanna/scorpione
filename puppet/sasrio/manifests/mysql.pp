@@ -1,4 +1,4 @@
-class vmdefault::mysql {
+class sasrio::mysql {
     class {'::mysql::server':
         root_password => 'K7FruGEsaTuc',
     }

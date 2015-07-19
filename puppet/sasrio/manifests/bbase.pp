@@ -1,4 +1,4 @@
-class vmdefault::bbase {
+class sasrio::bbase {
     Exec {
         path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ]
     }

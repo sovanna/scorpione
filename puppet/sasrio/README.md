@@ -5,28 +5,28 @@
 	wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb
 	dpkg -i puppetlabs-release-precise.deb
 	apt-get update
-	
+
 install puppet simply as an agent node (not with master)
 
 	apt-get install puppet
-	
-	
+
+
 comment out template
 
 	vi /etc/puppet/puppet.conf
-	
+
 	#templatedir=$confdir/templates
-	
+
 start puppet
 
 	vi /etc/default/puppet
 	START=yes
-	
+
 
 ### Example of puppet master config
 
 	class start {
-		include vmdefault
+		include sasrio
 
 		user {'sovanna':
 			name => 'sovanna',
@@ -55,30 +55,30 @@ start puppet
 
 	node puppet {
 		include start
-		include vmdefault::bbase
+		include sasrio::bbase
 	}
 
 	node 'vm01.lan' {
 		include start
-		include vmdefault::bbase
-		include vmdefault::web
-		include vmdefault::nodejs
+		include sasrio::bbase
+		include sasrio::web
+		include sasrio::nodejs
 	}
 
 	node 'vm02.lan' {
 		include start
-		include vmdefault::bbase
-		include vmdefault::jenkins
+		include sasrio::bbase
+		include sasrio::jenkins
 	}
 
 	node 'vm03.lan' {
 		include start
-		include vmdefault::bbase
-		include vmdefault::python
+		include sasrio::bbase
+		include sasrio::python
 	}
 
 	node 'vm04.lan' {
 		include start
-		include vmdefault::bbase
-		include vmdefault::mysql
+		include sasrio::bbase
+		include sasrio::mysql
 	}

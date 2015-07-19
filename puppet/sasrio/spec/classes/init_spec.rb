@@ -1,7 +1,7 @@
 require 'spec_helper'
-describe 'vmdefault' do
+describe 'sasrio' do
 
   context 'with defaults for all parameters' do
-    it { should contain_class('vmdefault') }
+    it { should contain_class('sasrio') }
   end
 end

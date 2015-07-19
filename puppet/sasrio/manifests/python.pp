@@ -1,4 +1,4 @@
-class vmdefault::python {
+class sasrio::python {
     Exec {
         path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ],
     }
@@ -14,7 +14,7 @@ class vmdefault::python {
     package {'python-dev':
         ensure => installed,
     }
-    
+
     package {'python-pip':
         ensure => installed,
     }

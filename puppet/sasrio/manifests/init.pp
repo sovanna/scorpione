@@ -1,4 +1,4 @@
-class vmdefault {
+class sasrio {
     Exec {
         path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ]
     }

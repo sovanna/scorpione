@@ -1,4 +1,4 @@
-class vmdefault::jenkins {
+class sasrio::jenkins {
     Exec {
         path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ]
     }

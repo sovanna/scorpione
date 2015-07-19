@@ -1,4 +1,4 @@
-class vmdefault::web {
+class sasrio::web {
     Exec {
         path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ]
     }
