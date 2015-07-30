@@ -8,7 +8,7 @@ class sasrio::nodejs {
     }
 
     exec {'install node setup':
-        command => 'curl -sL https://deb.nodesource.com/setup | bash -',
+        command => 'curl -sL https://deb.nodesource.com/setup_0.12 | bash -',
         require => Exec['install curl'],
     }
 

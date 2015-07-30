@@ -3,27 +3,45 @@ class sasrio::web {
         path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ]
     }
 
-    exec {'deb wheezy-backports':
-        command => 'echo "deb http://ftp.debian.org/debian wheezy-backports main contrib non-free" | tee -a /etc/apt/sources.list',
-        creates => '/root/.ssw-deb-wheezy-backports',
-        before => Exec['install nginx 1.6.x'],
-        require => Exec['apt-update'],
+    exec {'nginx signing':
+        command => 'wget http://nginx.org/keys/nginx_signing.key',
     }
 
-    exec {'install nginx 1.6.x':
-        command => 'apt-get -t wheezy-backports install nginx -y',
+    exec {'nginx add key':
+        command => 'apt-key add nginx_signing.key',
+        require => Exec['nginx signing'],
     }
 
-    file {'/root/.ssw-deb-wheezy-backports':
+    exec {'deb nginx org':
+        command => 'echo "deb http://nginx.org/packages/debian/ wheezy nginx" | tee -a /etc/apt/sources.list',
+        creates => '/root/.ssw-deb-wheezy-org',
+        require => Exec['nginx add key'],
+    }
+
+    exec {'deb src nginx org':
+        command => 'echo "deb-src http://nginx.org/packages/debian/ wheezy nginx" | tee -a /etc/apt/sources.list',
+        creates => '/root/.ssw-deb-src-wheezy-org',
+        require => Exec['deb nginx org'],
+        before => Exec['apt-update'],
+    }
+
+    exec {'install nginx':
+        command => 'apt-get install nginx -y',
+        require => Exec['deb src nginx org'],
+    }
+
+    file {'/root/.ssw-deb-wheezy-org':
         ensure => present,
-        subscribe => Exec['install nginx 1.6.x'],
+        subscribe => Exec['install nginx'],
     }
 
-    package {'nginx':
-        ensure => installed,
+    file {'/root/.ssw-deb-src-wheezy-org':
+        ensure => present,
+        subscribe => Exec['install nginx'],
     }
 
     service {'nginx':
         ensure => running,
+        require => Exec['install nginx']
     }
 }

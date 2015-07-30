@@ -35,9 +35,4 @@ class sasrio::python {
         command => 'pip install virtualenv',
         require => Package['python-pip'],
     }
-
-    service {'uwsgi':
-        ensure => running,
-        require => Package['uwsgi'],
-    }
 }

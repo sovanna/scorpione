@@ -14,13 +14,5 @@ class sasrio {
     exec {'install puppet module ssh_keygen':
         command => 'puppet module install maestrodev-ssh_keygen',
     }
-
-    cron {'puppet-agent':
-        ensure  => 'present',
-        command => '/usr/bin/puppet agent --onetime --no-daemonize --splay',
-        minute  => ['3'],
-        target  => 'root',
-        user    => 'root',
-    }
 }
 
