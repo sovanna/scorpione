@@ -61,4 +61,23 @@ start puppet
             user => 'sovanna',
             type => 'ssh-rsa',
         }
+
+        file {'vim folder':
+            ensure => 'directory',
+            source => 'puppet:///modules/sasrio/.vim/',
+            path => '/home/sovanna/.vim/',
+            recurse => true,
+            owner => 'sovanna',
+            group => 'sovanna',
+            require => User['sovanna']
+        }
+
+        file {'vimrc':
+            ensure => 'file',
+            source => 'puppet:///modules/sasrio/.vimrc',
+            path => '/home/sovanna/.vimrc',
+            owner => 'sovanna',
+            group => 'sovanna',
+            require => User['sovanna']
+        }
     }
