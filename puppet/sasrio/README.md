@@ -33,6 +33,10 @@ start puppet
     node 'vm01.lan' {
         require mandatory
 
+        group {'sovanna':
+            ensure => 'present',
+        }
+
         user {'sovanna':
             ensure => 'present',
             name => 'sovanna',
@@ -44,17 +48,17 @@ start puppet
             shell => '/bin/bash',
         }
 
-        ssh_authorized_key {'sovanna.hing@gmail.com':
-            ensure => 'present',
-            key => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDJSwqtG7NSR9Y8xcbkqOmRvhJaVJui/ltnaBiiC1BJQUqaXvvDw3beEQmVzATGeU9NAFSt9rtxFlCGR0G0uGoxkt3/98c/dSlzP9Xv7EG+B0YgPR1+ugqQ38NsotNknq0mKUczJR5vaBV8rRIHpcy872kCdntwMcsiLb9hpdiUWHCqgRDQbeSIVUAYlXOeQ/di2WLVhMTsS3Tq0AexJgGyyxvNqC5LxOGDwhiSTAsz97Hwj3axrkp3NzAALP0stdoygz9koSpEHmCPR9ApeiIp2d6yL7eUV7chHtJgL83YsR6HCcKYcNziOVpyqfnMCv2f7/hYpi3zRY1xjlpGNUEB',
-            user => 'sovanna',
-            type => 'ssh-rsa',
-        }
-
         ssh_keygen {'sovanna':}
         ssh_keygen {'root': home => '/root'}
 
         sudo::conf {'sovanna':
             content => 'sovanna ALL=(ALL) NOPASSWD:ALL',
+        }
+
+        ssh_authorized_key {'sovanna.hing@gmail.com':
+            ensure => 'present',
+            key => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDJSwqtG7NSR9Y8xcbkqOmRvhJaVJui/ltnaBiiC1BJQUqaXvvDw3beEQmVzATGeU9NAFSt9rtxFlCGR0G0uGoxkt3/98c/dSlzP9Xv7EG+B0YgPR1+ugqQ38NsotNknq0mKUczJR5vaBV8rRIHpcy872kCdntwMcsiLb9hpdiUWHCqgRDQbeSIVUAYlXOeQ/di2WLVhMTsS3Tq0AexJgGyyxvNqC5LxOGDwhiSTAsz97Hwj3axrkp3NzAALP0stdoygz9koSpEHmCPR9ApeiIp2d6yL7eUV7chHtJgL83YsR6HCcKYcNziOVpyqfnMCv2f7/hYpi3zRY1xjlpGNUEB',
+            user => 'sovanna',
+            type => 'ssh-rsa',
         }
     }
