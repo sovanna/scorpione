@@ -14,5 +14,9 @@ class sasrio {
     exec {'install puppet module ssh_keygen':
         command => 'puppet module install maestrodev-ssh_keygen',
     }
+
+    exec {'install puppet module mysql':
+        command => 'puppet module install puppetlabs-mysql',
+    }
 }
 
