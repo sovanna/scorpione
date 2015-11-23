@@ -17,11 +17,6 @@ class sasrio::phalconphp {
         require => Package['libpcre3-dev']
     }
 
-    package {'make':
-        ensure => installed,
-        require => Package['gcc']
-    }
-
     package {'php5-mysql':
         ensure => installed,
         require => Package['make']
