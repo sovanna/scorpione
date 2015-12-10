@@ -18,5 +18,9 @@ class sasrio {
     exec {'install puppet module mysql':
         command => 'puppet module install puppetlabs-mysql',
     }
+
+    exec {'install puppet memcached':
+	command => 'puppet module install saz-memcached',
+    }
 }
 
