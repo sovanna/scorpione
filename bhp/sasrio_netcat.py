@@ -83,8 +83,8 @@ def main():
 
     if not listen and len(target) and port > 0:
         print("[*] Client Mode")
-        buff = sys.stdin.read()
-        client_sender(buff)
+        # buff = sys.stdin.read()
+        client_sender()
 
     if listen:
         print("[*] Server Mode")
@@ -102,24 +102,24 @@ def client_sender(buff=[]):
         if len(buff):
             client.send(buff)
 
-            while True:
-                recv_len = 1
-                response = ""
+        while True:
+            recv_len = 1
+            response = ""
 
-                while recv_len:
-                    data = client.recv(4096)
-                    recv_len = len(data)
-                    response += data
+            while recv_len:
+                data = client.recv(4096)
+                recv_len = len(data)
+                response += data
 
-                    if recv_len < 4096:
-                        break
+                if recv_len < 4096:
+                    break
 
-                print(response)
+            print(response)
 
-                buff = raw_input("")
-                buff += "\n"
+            buff = raw_input("")
+            buff += "\n"
 
-                client.send(buff)
+            client.send(buff)
     except Exception as e:
         print("[*] Exception! Exiting. Error => %s" % e)
         client.close()
