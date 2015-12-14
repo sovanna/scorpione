@@ -9,7 +9,13 @@ class sasrio::elasticsearch {
 
     exec {'deb elastic':
         command => 'echo "deb http://packages.elastic.co/elasticsearch/1.4/debian stable main" | tee -a /etc/apt/sources.list',
+        creates => '/root/.ssw-deb-elastic',
         subscribe => Exec['elastic install key'],
+    }
+
+    file {'/root/.ssw-deb-elastic':
+        ensure => present,
+        subscribe => Exec['install elasticsearch'],
     }
 
     exec {'install elasticsearch':
