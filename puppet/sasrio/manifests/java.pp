@@ -1,4 +1,8 @@
 class sasrio::java {
+    Exec {
+        path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ]
+    }
+
     exec {'remove java6':
         command => 'apt-get remove openjdk-6-jre-headless openjdk-6-jre-lib openjdk-6-jre default-jre default-jre-headless -y',
         before => Package['openjdk-7-jre'],
